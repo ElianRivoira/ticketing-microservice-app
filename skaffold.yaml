@@ -1,0 +1,59 @@
+apiVersion: skaffold/v4beta2
+kind: Config
+build:
+  local:
+    push: false
+  artifacts:
+  - image: elianrivoira/auth
+    context: auth
+    sync:
+      manual:
+      - src: .
+        dest: src/**/*.ts
+    docker:
+      dockerfile: Dockerfile
+  # - image: elianrivoira/comments
+  #   context: comments
+  #   sync:
+  #     manual:
+  #     - src: .
+  #       dest: '*.js'
+  #   docker:
+  #     dockerfile: Dockerfile
+  # - image: elianrivoira/event-bus
+  #   context: event-bus
+  #   sync:
+  #     manual:
+  #     - src: .
+  #       dest: '*.js'
+  #   docker:
+  #     dockerfile: Dockerfile
+  # - image: elianrivoira/moderation
+  #   context: moderation
+  #   sync:
+  #     manual:
+  #     - src: .
+  #       dest: '*.js'
+  #   docker:
+  #     dockerfile: Dockerfile
+  # - image: elianrivoira/posts
+  #   context: posts
+  #   sync:
+  #     manual:
+  #     - src: .
+  #       dest: '*.js'
+  #   docker:
+  #     dockerfile: Dockerfile
+  # - image: elianrivoira/query
+  #   context: query
+  #   sync:
+  #     manual:
+  #     - src: .
+  #       dest: '*.js'
+  #   docker:
+  #     dockerfile: Dockerfile
+manifests:
+  rawYaml:
+  - ./infra/k8s/*
+deploy:
+  kubectl: {}
