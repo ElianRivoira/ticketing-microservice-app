@@ -4,24 +4,32 @@ build:
   local:
     push: false
   artifacts:
-  - image: elianrivoira/auth
-    context: auth
-    sync:
-      manual:
-      - src: .
-        dest: 'src/**/*.ts'
-    docker:
-      dockerfile: Dockerfile
-  - image: elianrivoira/client
-    context: client
-    sync:
-      manual:
-      - src: .
-        dest: '**/*.js'
-    docker:
-      dockerfile: Dockerfile
+    - image: elianrivoira/auth
+      context: auth
+      sync:
+        manual:
+          - src: .
+            dest: 'src/**/*.ts'
+      docker:
+        dockerfile: Dockerfile
+    - image: elianrivoira/client
+      context: client
+      sync:
+        manual:
+          - src: .
+            dest: '**/*.js'
+      docker:
+        dockerfile: Dockerfile
+    - image: elianrivoira/tickets
+      context: tickets
+      sync:
+        manual:
+          - src: .
+            dest: 'src/**/*.ts'
+      docker:
+        dockerfile: Dockerfile
 manifests:
   rawYaml:
-  - ./infra/k8s/*
+    - ./infra/k8s/*
 deploy:
   kubectl: {}
