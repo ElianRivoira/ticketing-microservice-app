@@ -61,7 +61,7 @@ it('created a ticket with a valid inputs', async () => {
   let tickets = await Ticket.find({});
   expect(tickets.length).toEqual(0);
 
-  const title = 'asdf';
+  const title = 'Concert';
   const price = 20;
 
   await request(app)
