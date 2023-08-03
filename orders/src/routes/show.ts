@@ -9,7 +9,6 @@ const router = express.Router();
 router.get(
   '/api/orders/:orderId',
   requireAuth,
-  [param('orderId').isMongoId().withMessage('The id must be provided')],
   async (req: Request, res: Response) => {
     const order = await Order.findById(req.params.orderId).populate('ticket');
     if (!order) throw new NotFoundError();
