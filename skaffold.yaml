@@ -3,6 +3,9 @@ kind: Config
 build:
   local:
     push: false
+  tagPolicy:
+    gitCommit:
+      ignoreChanges: true
   artifacts:
     - image: elianrivoira/auth
       context: auth
