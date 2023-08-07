@@ -39,6 +39,14 @@ build:
             dest: 'src/**/*.ts'
       docker:
         dockerfile: Dockerfile
+    - image: elianrivoira/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
 manifests:
   rawYaml:
     - ./infra/k8s/*
