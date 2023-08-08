@@ -47,6 +47,14 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: elianrivoira/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
 manifests:
   rawYaml:
     - ./infra/k8s/*
