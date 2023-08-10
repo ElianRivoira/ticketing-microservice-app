@@ -5,7 +5,7 @@ build:
     push: false
   tagPolicy:
     gitCommit:
-      ignoreChanges: true
+      ignoreChanges: false
   artifacts:
     - image: elianrivoira/auth
       context: auth
