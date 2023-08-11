@@ -1,0 +1,19 @@
+name: deploy-auth
+
+on: 
+  push:
+    branches:
+      - master
+    paths:
+      - 'auth/**'
+jobs:
+  job_id:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd auth && docker build -t elianrivoira/auth .
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - run: docker push elianrivoira/auth
